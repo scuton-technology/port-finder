@@ -1,6 +1,17 @@
-# @scuton/port-finder
+<div align="center">
 
-Find an available port. Starts from a base port and increments until one is free. Zero dependencies.
+# port-finder
+
+**Find an available port. Zero dependencies.**
+
+[![npm](https://img.shields.io/npm/v/@scuton/port-finder?style=flat-square)](https://www.npmjs.com/package/@scuton/port-finder)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178c6?style=flat-square)](https://www.typescriptlang.org/)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?style=flat-square)](package.json)
+
+</div>
+
+---
 
 ## Install
 
@@ -13,29 +24,20 @@ npm install @scuton/port-finder
 ```typescript
 import { findPort, isPortFree } from '@scuton/port-finder';
 
-// Find first available port (starts at 3000)
-const port = await findPort();
+const port = await findPort();                          // first free port from 3000
+const port = await findPort(8080);                      // start from 8080
+const port = await findPort({ start: 3000, end: 4000 }); // within range
 
-// Start from a specific port
-const port = await findPort(8080);
-
-// Specify a range
-const port = await findPort({ start: 3000, end: 4000 });
-
-// Check if a port is free
-const free = await isPortFree(3000); // true/false
+const free = await isPortFree(3000);                    // true / false
 ```
 
 ## API
 
-### `findPort(options?): Promise<number>`
-
-Find the first available port. Accepts a start number or options object.
-
-### `isPortFree(port, host?): Promise<boolean>`
-
-Check if a specific port is available.
+| Function | Signature | Description |
+|----------|-----------|-------------|
+| `findPort` | `(options?: number \| FindPortOptions) => Promise<number>` | Find first available port |
+| `isPortFree` | `(port: number, host?: string) => Promise<boolean>` | Check if port is available |
 
 ## License
 
-MIT © Scuton Technology
+MIT — [Scuton Technology](https://scuton.com)
